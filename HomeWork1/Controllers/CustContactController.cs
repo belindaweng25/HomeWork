@@ -66,6 +66,28 @@ namespace HomeWork1.Controllers
             }
             else
             {
+
+                var CustData = from A in db.客戶資料
+                               select new
+                               {
+                                   A.Id,
+                                   A.客戶名稱,
+                               };
+
+                List<SelectListItem> mySelectItemList = new List<SelectListItem>();
+
+                foreach (var Custitem in CustData)
+                {
+                    mySelectItemList.Add(new SelectListItem()
+                    {
+                        Text = Custitem.客戶名稱,
+                        Value = Custitem.Id.ToString(),
+                        Selected = Custitem.Id.Equals(newData.客戶Id)
+                    });
+                }
+
+                ViewBag.客戶Id = mySelectItemList;
+
                 return View(newData);
             }
         }
@@ -109,6 +131,28 @@ namespace HomeWork1.Controllers
 
                 return RedirectToAction("Index");
             }
+
+            var CustData = from A in db.客戶資料
+                           select new
+                           {
+                               A.Id,
+                               A.客戶名稱,
+                           };
+
+            List<SelectListItem> mySelectItemList = new List<SelectListItem>();
+
+            foreach (var Custitem in CustData)
+            {
+                mySelectItemList.Add(new SelectListItem()
+                {
+                    Text = Custitem.客戶名稱,
+                    Value = Custitem.Id.ToString(),
+                    Selected = Custitem.Id.Equals(Data.客戶Id)
+                });
+            }
+
+            ViewBag.客戶Id = mySelectItemList;
+
             return View(Data);
         }
 

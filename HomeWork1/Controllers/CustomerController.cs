@@ -24,6 +24,7 @@ namespace HomeWork1.Controllers
                 data = data.Where(p => p.客戶名稱.Contains(search)).ToList();
             }
 
+            
             return View(data);
         }
 
